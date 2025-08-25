@@ -106,8 +106,14 @@ export default function Command() {
 						accessories={[
 							{
 								icon: {
-									source: getProgressIcon(item.current_totp_time_remaining / 30),
-									tintColor: getProgressColor(item.current_totp_time_remaining),
+									source: getProgressIcon(
+										item.current_totp_time_remaining / 30,
+										getProgressColor(item.current_totp_time_remaining),
+										{
+											background: getProgressColor(item.current_totp_time_remaining),
+											backgroundOpacity: 0.35,
+										}
+									),
 								},
 							},
 						]}
