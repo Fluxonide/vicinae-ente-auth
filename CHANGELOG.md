@@ -1,6 +1,46 @@
 # Ente Auth Changelog
 
-## [Bug fix] - {PR_MERGE_DATE}
+## [Upgrade Raycast deps] - 2026-05-19
+
+- Upgrade @raycast/api and @raycast/utils to make the extension more compatible with Raycast v2.
+
+## [Fixed Ente Auth import] - 2026-05-10
+
+- Fixed parsing of Ente exports with bare issuer parameters
+- Handled secrets containing whitespace, dashes, or plus signs
+- Improved error logging for import failures
+
+## [Fix spaces in export path] - 2026-03-09
+
+- Fixed issue with spaces in export path causing export to fail
+
+## [Fix import edge cases] - 2026-03-05
+
+- Fixed cases when ente auth added dashes and plus signs into secret (so far it wasn't parsing correctly)
+- Fixed hiding ente auth entries that were trashed
+
+## [Fix import deleting export file] - 2026-02-01
+
+- Fixed import command deleting the export file before re-exporting, causing ENOENT if export fails
+- Added missing return in export command error handling
+
+## [Handle double-encoded TOTP + Maintenance] - 2025-12-02
+
+- Handle double-encoded TOTP
+- Change the "Copy Next" `shortcut` to be cross-platform
+- Remove unnecessary deps
+- Mention default values the extension uses for reference
+
+## [Windows Support] - 2025-08-25
+
+- Added windows support
+
+## [Bug fix] - 2025-07-11
+
+- removed flickering "no secrets found" message when opening the extension
+- slightly updated "no secrets found" message
+
+## [Bug fix] - 2025-05-12
 
 - fix variable for assigning user preferred values
 - removed overwrite options as that is done by default now

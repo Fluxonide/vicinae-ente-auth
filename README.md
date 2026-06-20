@@ -1,3 +1,7 @@
+<p align="center">
+   <img src="./assets/icon.png" width="150" height="150" />
+</p>
+
 # Ente Auth - Raycast extension for Ente Exports
 
 Easily integrate your **Ente Auth** with Raycast using this simple extension to query your Ente Auth TOTP accounts.
@@ -77,7 +81,7 @@ ente version
    - Search for a specific account.
    - You can change the preferred action when `Enter` is pressed (e.g. Paste or Copy).
    - The search supports loose search queries, matching words in the account name in any order.
-     - For example "Docker Hub" will match with the queries "Docker Hub", "Hub", "Do Hu".
+      - For example "Docker Hub" will match with the queries "Docker Hub", "Hub", "Do Hu".
 
 ---
 
@@ -112,6 +116,13 @@ ExportDir: /foo/bar/ente
 ```
 
 Note: In the extension preferences, **Ente CLI Export Location** refers to the `exportDir` value shown above.
+
+## Defaults
+
+| Preference | Value | Notes |
+| --- | --- | --- |
+| Ente CLI Path | `/usr/local/bin/ente` | If you are using Homebrew (MacOS) set this to `/opt/homebrew/bin/ente` |
+| Ente CLI Export Location | `~/Documents/ente` | |
 
 ## Disclaimer
 
