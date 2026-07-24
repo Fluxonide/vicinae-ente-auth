@@ -2,30 +2,39 @@
    <img src="./assets/icon.png" width="150" height="150" />
 </p>
 
-# Ente Auth - Raycast extension for Ente Exports
+# Ente Auth - Raycast & Vicinae Extension
 
-Easily integrate your **Ente Auth** with Raycast using this simple extension to query your Ente Auth TOTP accounts.
+Easily integrate your **Ente Auth** TOTP accounts with [Raycast](https://raycast.com) (macOS) or [Vicinae](https://vicinae.com) (Windows & Linux).
 
-The workflow uses Ente CLI to export your secrets from Ente Auth and then stashes them securely into Raycast's encrypted database.
+The workflow uses Ente CLI to export your secrets from Ente Auth and then stashes them securely into the launcher's encrypted database.
 
 ## Features
 
 - Imports: Ability to dynamically import secrets
 - TOTP Code Display: Fetches and displays TOTP secrets exported from Ente Auth.
-- Sorted Data: Most used TOTP codes will be displayed at the top. Use ⌘ + [Number] to select.
-- Service Icons: Automatically fetches a brand icon for each account from the Ente custom-icon registry, with a Simple Icons fallback. If neither has a match, it falls back to a favicon (when a URL is set in the notes) and then a default icon. Use the **Refresh Icons** action (⌘R) to re-download.
+- Sorted Data: Most used TOTP codes will be displayed at the top.
+- Service Icons: Automatically fetches a brand icon for each account from the Ente custom-icon registry, with a Simple Icons fallback. If neither has a match, it falls back to a favicon (when a URL is set in the notes) and then a default icon. Use the **Refresh Icons** action to re-download.
 - Metadata Display: Shows detailed metadata for each TOTP.
 - Progress Indicator: Visual progress indicator for the remaining time of the current TOTP code.
 - Tag Support: Displays tags associated with each TOTP secret.
 - Clipboard Actions: Allows users to copy the current and next TOTP codes to the clipboard with a single click.
 
+## Supported Platforms
+
+| Platform | Launcher | Status |
+| --- | --- | --- |
+| macOS | Raycast | ✅ Supported |
+| Windows | Vicinae | ✅ Supported |
+| Linux | Vicinae | ✅ Supported |
+
 ## 🚀 Setup
 
 > The Ente Auth [CLI](https://github.com/ente-io/ente/tree/main/cli) is required.
 
-### Homebrew (Recommended)
+### Install Ente CLI
 
-You can install the Ente CLI using [Homebrew](https://formulae.brew.sh/formula/ente-cli#default) for a simpler and more automated setup. Run the following command in your terminal:
+<details>
+<summary><strong>Homebrew (macOS / Linux)</strong></summary>
 
 ```bash
 brew install ente-cli
@@ -37,33 +46,44 @@ Once installed, verify the installation:
 ente version
 ```
 
-### Github Release (Optional)
+</details>
 
-To use the **Ente Auth** extension, you'll need the **Ente CLI**. Follow the steps below to install it:
+<details>
+<summary><strong>GitHub Release (All Platforms)</strong></summary>
 
 1. Visit the [Ente CLI releases page](https://github.com/ente-io/ente/releases?q=tag%3Acli-v0).
-2. Download the latest version for **macOS**.
-3. Move the binary to `/usr/local/bin` and make it executable with the following commands:
+2. Download the latest version for your platform.
+3. Move the binary to a directory on your `PATH` and make it executable:
+
+   **macOS / Linux:**
 
    ```bash
    sudo mv /path/to/ente /usr/local/bin/ente
    sudo chmod +x /usr/local/bin/ente
    ```
 
-Once installed, verify that it's working by running the following command in your terminal:
+   **Windows (PowerShell - Admin):**
 
-```bash
-ente version
-```
+   ```powershell
+   Move-Item .\ente.exe C:\Windows\System32\ente.exe
+   ```
 
-### 2. Configure Ente CLI
+4. Verify the installation:
+
+   ```bash
+   ente version
+   ```
+
+</details>
+
+### Configure Ente CLI
 
 - Run `ente account add` to authenticate yourself with Ente CLI.
 - You'll first be prompted for the app type. Enter `auth`.
 - Next, you'll be asked for an export directory. You can choose any path you wish, but it must exist before you press return, else Ente CLI will not accept it.
 - Finally, you'll be prompted to provide your Ente login credentials.
 
-> To ensure the extension can import your accounts from Ente Auth, you'll need to define the "Ente CLI Export Location" when you add this extension to Raycast.
+> To ensure the extension can import your accounts from Ente Auth, you'll need to define the "Ente CLI Export Location" in the extension preferences.
 > This path should be the same one you configured when adding your Ente account.
 > To show the Ente CLI's configured export path, run `ente account list` and refer to the `ExportDir` value.
 
@@ -71,10 +91,10 @@ ente version
 
 ## 📖 Usage Instructions
 
-1. **Launch Raycast**
+1. **Launch Raycast (macOS) or Vicinae (Windows/Linux)**
 
 2. **Import Your Data**
-   - To import your Ente Auth TOTP accounts, simply trigger the workflow by running **`Import Secrets`** in Raycast.
+   - To import your Ente Auth TOTP accounts, trigger the workflow by running **`Import Secrets`**.
 
 3. **Search for an Ente Auth TOTP account**
    - To list all of your Ente Auth TOTP accounts, run `Get TOTP`.
@@ -87,7 +107,7 @@ ente version
 
 ### Other Usages
 
-- **Export Secrets** – Creates a file named `ente_auth.txt` in the CLI’s configured export directory (`exportDir`).
+- **Export Secrets** – Creates a file named `ente_auth.txt` in the CLI's configured export directory (`exportDir`).
 - **Delete Export** – Removes the `ente_auth.txt` file from the same directory.
 
 ### Manual Imports
@@ -100,7 +120,7 @@ To import secrets manually:
    ente export
    ```
 
-2. Then in Raycast, run **Import Secrets**.
+2. Then run **Import Secrets** in your launcher.
 
 Alternatively, you can perform both steps using the UI, as long as the `ente_auth.txt` file is placed in the configured export directory.
 
@@ -121,8 +141,21 @@ Note: In the extension preferences, **Ente CLI Export Location** refers to the `
 
 | Preference | Value | Notes |
 | --- | --- | --- |
-| Ente CLI Path | `/usr/local/bin/ente` | Homebrew (macOS): set this to `/opt/homebrew/bin/ente`. Pointing at the containing folder (e.g. `/opt/homebrew/bin`) also works — the binary is resolved automatically. |
+| Ente CLI Path | `/usr/local/bin/ente` | Homebrew (macOS): set this to `/opt/homebrew/bin/ente`. Pointing at the containing folder (e.g. `/opt/homebrew/bin`) also works — the binary is resolved automatically. On Windows, set this to the path of `ente.exe`. |
 | Ente CLI Export Location | `~/Documents/ente` | |
+
+## Development
+
+```bash
+# Install dependencies
+npm install
+
+# Raycast (macOS)
+npm run dev
+
+# Vicinae (Windows / Linux)
+npm run vici:dev
+```
 
 ## Disclaimer
 
