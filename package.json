@@ -1,6 +1,5 @@
 {
   "$schema": "https://www.raycast.com/schemas/extension.json",
-  "type": "module",
   "name": "ente-auth",
   "title": "Ente Auth",
   "description": "Get TOTP Codes from Ente Auth",
@@ -113,6 +112,7 @@
     "@types/node": "22.13.10",
     "@types/react": "19.0.10",
     "@types/url-parse": "^1.4.11",
+    "@vicinae/api": "^0.23.2",
     "eslint": "^9.22.0",
     "globals": "^15.10.0",
     "prettier": "^3.5.3",
@@ -121,6 +121,8 @@
   "scripts": {
     "build": "ray build",
     "dev": "ray develop",
+    "vici:build": "vici build",
+    "vici:dev": "vici develop",
     "fix-lint": "ray lint --fix",
     "lint": "ray lint",
     "prepublishOnly": "echo \"\\n\\nIt seems like you are trying to publish the Raycast extension to npm.\\n\\nIf you did intend to publish it to npm, remove the \\`prepublishOnly\\` script and rerun \\`npm publish\\` again.\\nIf you wanted to publish it to the Raycast Store instead, use \\`npm run publish\\` instead.\\n\\n\" && exit 1",
