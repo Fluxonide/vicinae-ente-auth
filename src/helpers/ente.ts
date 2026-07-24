@@ -19,14 +19,17 @@ const getCliPath = (): string => {
 	// Tolerate the common mistake of pointing at the containing directory (e.g. "/opt/homebrew/bin")
 	// instead of the binary itself by appending the expected executable name.
 	try {
-		if (fse.existsSync(configuredPath) && fse.statSync(configuredPath).isDirectory()) {
-			return path.join(configuredPath, process.platform === "win32" ? "ente.exe" : "ente");
+		if (fse.existsSync(configuredPath)) {
+			if (fse.statSync(configuredPath).isDirectory()) {
+				return path.join(configuredPath, process.platform === "win32" ? "ente.exe" : "ente");
+			}
+			return configuredPath;
 		}
 	} catch {
-		// Ignore stat errors and fall back to the configured path as-is.
+		// Ignore stat errors and fall back to searching system PATH
 	}
 
-	return configuredPath;
+	return "ente";
 };
 
 const runEnteCommand = (...args: string[]): string =>
