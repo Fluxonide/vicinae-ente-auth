@@ -2,13 +2,14 @@
   "$schema": "https://json.schemastore.org/tsconfig",
   "include": [
     "src/**/*",
-    "raycast-env.d.ts"
+    "raycast-env.d.ts",
+    "vicinae-env.d.ts"
   ],
   "compilerOptions": {
     "lib": [
       "ES2023"
     ],
-    "module": "commonjs",
+    "module": "esnext",
     "target": "ES2023",
     "esModuleInterop": true,
     "skipLibCheck": true,
@@ -16,6 +17,7 @@
     "jsx": "react-jsx",
     "resolveJsonModule": true,
     /* Bundler mode */
+    "moduleResolution": "bundler",
     "isolatedModules": true,
     "moduleDetection": "force",
     "noEmit": true,
